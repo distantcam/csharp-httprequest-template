@@ -31,18 +31,12 @@ namespace Function
 {
     public class FunctionHandler
     {
-        public async Task Handle(HttpContext context)
+        public async Task<(int, string)> Handle(HttpRequest request)
         {
-            var input = GetRequestBody(context);
+            var reader = new StreamReader(request.Body);
+            var input = await reader.ReadToEndAsync();
 
-            await context.Response.WriteAsync($"Hello! Your input was {input}");
-        }
-
-        private string GetRequestBody(HttpContext context)
-        {
-            var reader = new StreamReader(context.Request.Body);
-            string text = reader.ReadToEnd();
-            return text;
+            return (200, $"Hello! Your input was {input}");
         }
     }
 }
@@ -68,14 +62,14 @@ namespace Function
     
     public class FunctionHandler
     {
-        public async Task Handle(HttpContext context)
+        public Task<(int, string)> Handle(HttpRequest request)
         {
             var res = new SampleResponse();
             res.FunctionStatus = "Success";
 
             var output = JsonConvert.SerializeObject(res);
 
-            return Task.FromResult(output);
+            return Task.FromResult((200, output));
         }
     }
 }

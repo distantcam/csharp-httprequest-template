@@ -3,10 +3,10 @@
 This repository contains the template for OpenFaaS using the upgraded `of-watchdog` which allows for higher throughput.
 
 ```
-$ faas template pull https://github.com/distantcam/csharp-webrequest-template
+$ faas template pull https://github.com/distantcam/csharp-httprequest-template
 $ faas new --list
 Languages available as templates:
-- csharp-webrequest
+- csharp-httprequest
 
 ```
 
@@ -16,8 +16,8 @@ This template uses a middleware handler in an ASPNET Core Web API. This allows a
 First, pull the template with the faas CLI and create a new function:
 
 ```
-$ faas-cli template pull https://github.com/distantcam/csharp-webrequest-template
-$ faas-cli new --lang csharp-webrequest <function name>
+$ faas-cli template pull https://github.com/distantcam/csharp-httprequest-template
+$ faas-cli new --lang csharp-httprequest <function name>
 ```
 
 In the directory that was created, using the name of you function, you'll find `FunctionHandler.cs`. It will look like this:

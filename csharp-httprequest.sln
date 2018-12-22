@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Function", "template\csharp-webrequest\function\Function.csproj", "{7A443F1C-78ED-416E-9625-0CAD4B63D7CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Function", "template\csharp-httprequest\function\Function.csproj", "{7A443F1C-78ED-416E-9625-0CAD4B63D7CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "root", "template\csharp-webrequest\root.csproj", "{132C9C0D-0AF1-4D73-91B0-5C072B1B553E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "root", "template\csharp-httprequest\root.csproj", "{132C9C0D-0AF1-4D73-91B0-5C072B1B553E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

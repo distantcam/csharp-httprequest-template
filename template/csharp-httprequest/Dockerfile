@@ -2,7 +2,7 @@ FROM alpine:3.12 as watchdog
 
 RUN apk --no-cache add curl \
     && echo "Pulling watchdog binary from Github." \
-    && curl -sSL https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.1/of-watchdog > /usr/bin/fwatchdog \
+    && curl -sSL https://github.com/openfaas-incubator/of-watchdog/releases/download/0.8.1/of-watchdog > /usr/bin/fwatchdog \
     && chmod +x /usr/bin/fwatchdog \
     && cp /usr/bin/fwatchdog /home/app \
     && apk del curl --no-cache
@@ -26,7 +26,7 @@ COPY .  .
 
 RUN dotnet publish -c release -o published
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.0
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
 
 COPY --from=watchdog /usr/bin/fwatchdog  /usr/bin/
 

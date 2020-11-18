@@ -1,4 +1,4 @@
-FROM alpine:3.8 as watchdog
+FROM alpine:3.12 as watchdog
 
 RUN apk --no-cache add curl \
     && echo "Pulling watchdog binary from Github." \
@@ -7,15 +7,15 @@ RUN apk --no-cache add curl \
     && cp /usr/bin/fwatchdog /home/app \
     && apk del curl --no-cache
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 as builder
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as builder
 
 # Supress collection of data.
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 # Optimize for Docker builder caching by adding projects first.
 
-RUN mkdir -p /home/app/function
-WORKDIR /home/app/function
+RUN mkdir -p /home/app/src/function
+WORKDIR /home/app/src/function
 COPY ./function/Function.csproj  .
 
 WORKDIR /home/app/src/
@@ -26,7 +26,7 @@ COPY .  .
 
 RUN dotnet publish -c release -o published
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+FROM mcr.microsoft.com/dotnet/aspnet:5.0.0
 
 COPY --from=watchdog /usr/bin/fwatchdog  /usr/bin/
 
